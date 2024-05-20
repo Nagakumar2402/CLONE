@@ -1,0 +1,110 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primary-color: #020202;
+  --rem-5: 5rem;
+}
+body {
+  background-color: var(--primary-color);
+}
+header {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 3px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(1px, 2px);
+  }
+  80% {
+    transform: translate(1px, 1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch2 {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(1px, -2px);
+  }
+  40% {
+    transform: translate(-1px, 1px);
+  }
+  60% {
+    transform: translate(-1px, -1px);
+  }
+  80% {
+    transform: translate(0, 1px);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+.rockStarLogo {
+  background: url("./public/logo.svg") no-repeat center/contain;
+  position: relative;
+  height: var(--rem-5);
+  width: var(--rem-5);
+  cursor: pointer;
+}
+
+.rockStarLogo::before,
+.rockStarLogo::after {
+  display: block;
+  content: "";
+  background: url("./public/logo.svg") no-repeat center/contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: filter 0.1s;
+  opacity: 0;
+}
+
+.rockStarLogo::before {
+  z-index: -1;
+}
+
+.rockStarLogo::after {
+  z-index: -2;
+}
+
+.rockStarLogo:hover::before,
+.rockStarLogo:hover::after {
+  opacity: 1;
+}
+
+.rockStarLogo:hover::before {
+  animation: glitch 0.4s both 2;
+  filter: invert(55%) sepia(80%) saturate(301%) hue-rotate(148deg)
+    brightness(93%) contrast(91%);
+}
+
+.rockStarLogo:hover::after {
+  animation: glitch2 0.4s both 2;
+  filter: invert(48%) sepia(83%) saturate(4695%) hue-rotate(329deg)
+    brightness(84%) contrast(107%);
+}
